@@ -1,0 +1,39 @@
+<template>
+    <lightning-card title="Pending Quote Approvals">
+
+        <!-- boton de approve -->
+        <div class="slds-m-around_medium">
+            <lightning-button 
+                label="Approve Selected"
+                variant="brand"
+                onclick={handleApproveSelected}>
+            </lightning-button>
+        </div>
+
+        <!-- Spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-m-around_medium">
+                <lightning-spinner 
+                    alternative-text="Processing"
+                    size="medium">
+                </lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Tabla -->
+        <lightning-datatable
+            key-field="Id"
+            data={quotes}
+            columns={columns}
+            onrowselection={handleRowSelection}>
+        </lightning-datatable>
+
+        <!-- Error -->
+        <template if:true={error}>
+            <p class="slds-text-color_error">
+                Error loading data
+            </p>
+        </template>
+
+    </lightning-card>
+</template>
